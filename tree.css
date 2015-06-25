@@ -1,0 +1,152 @@
+ul {
+	padding-left:2rem;
+}
+.node {
+	list-style: none;
+	padding: 0.5rem 0;
+}
+.node {
+	cursor: pointer;
+}
+.node[data-expanded="false"] > .icon:before {
+	content: "[+]";
+}
+.node[data-expanded="true"] > .icon:before {
+	content: "[-]";
+}
+.node > .icon:before {
+	content: "[.]";
+	font-family: monospace;		
+	vertical-align: top;
+	display: inline-block;
+	width: 1.5rem;
+}
+.node[data-expanded="true"] ul {
+	display: block;
+}
+.node[data-expanded="false"] ul {
+	display: none;
+}
+.key {
+	display: inline-block;
+	padding: 0 0.5rem;
+	border-radius: 5px;
+	font-weight: bold;
+}
+.value {
+	color: gray;
+}
+.value:before {
+	content: " = ";
+}
+.key.selected {
+	background-color: cyan;
+	box-shadow: 0 0 3px #ddd;
+}
+#mytree {
+	border-radius: 15px;
+	background-color: #C8D9EA;
+	position: fixed;
+	width: 50%;
+	height: 40rem;
+	margin-left: 25%;
+	z-index: 100000;
+	webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.tree-toolbar {
+	margin: 0.5rem 0;	
+}
+
+.tree-toolbar button {
+	cursor: pointer;
+	background:#35b128; /*the colour of the button*/
+	border:1px solid #33842a; /*required or the default border for the browser will appear*/
+	/*give the button curved corners, alter the size as required*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 10px;
+	/*give the button a drop shadow*/
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+	-moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+	box-shadow: 0 0 4px rgba(0,0,0, .75);
+	/*style the text*/
+	color: #f3f3f3;
+	font-size: 1.1em;
+	margin: 0 0.5rem;
+	font-family: monospace;
+	height: 2.5rem;
+	outline: none;
+	min-width: 3rem;
+	padding: 0 !important;
+}
+
+.tree-toolbar .exit-treeview {
+	background-color: rgb(236, 4, 4);
+	margin-bottom: 0.2rem;
+	font-size: 1.5rem;
+}
+
+.tree-toolbar button:hover {
+	opacity: 0.8;
+	/*background-color :#399630; /*make the background a little darker*/
+	/*reduce the drop shadow size to give a pushed button effect*/
+	-webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
+	-moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
+	box-shadow: 0 0 1px rgba(0,0,0, .75);
+}
+
+.tree-toolbar .search {
+  padding-left: 0.5rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+}
+
+.tree-toolbar .left-section {
+	width: 10rem;
+}
+
+.tree-toolbar .right-section {
+	width: 5rem;
+}
+
+.tree-content {
+	width: 100%;
+	height: 35rem;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+/*
+	Apply .cell to children of .row and they will behave like table cells
+*/
+
+.row {
+  display: table;
+  width: 100%;
+  height: 2.625rem;
+  font-size: 0.84rem;
+  border-collapse: collapse;
+}
+
+.row.fixed {
+  table-layout: fixed;
+}
+
+.cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cell.left {
+  text-align: left;
+  float: none;
+}
+
+.cell.right {
+  text-align: right;
+  float: none;
+}
