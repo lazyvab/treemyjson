@@ -19,7 +19,17 @@ function viewTree(context, options) {
   }
 
   function expand(node) {
-    $(node).attr('data-expanded', true);
+    var $node = $(node);
+
+    if (!$node.data('traversed')) {
+      renderFullTree($node, $node.data('context'));
+      $node.data('traversed', true);
+    }
+    if ($node.children('ul').length) {
+      $node.attr('data-expanded', true);
+    } else {
+      $node.removeAttr('data-expanded');
+    }
   }
 
   function collapse(node) {
@@ -27,7 +37,6 @@ function viewTree(context, options) {
   }
 
   function renderFullTree($root, context) {
-    // TODO: To optimize, create nodes of a subtree on expansion
     if (!context) {
       return;
     }
@@ -44,7 +53,8 @@ function viewTree(context, options) {
         if (typeof childContext !== 'object') {
             $child.append('<span class="value">'+childContext+'</span>');
         } else {
-          renderFullTree($child, childContext);
+          collapse($child);
+          registerNodeEventListeners($child);
         }
       }
     }
@@ -66,7 +76,8 @@ function viewTree(context, options) {
         if (predicate(key, childContext)) {
           var $child = $('<li class="node"><span class="icon"></span><span class="key">'+nodeName+'</span></li>').appendTo($list);
           $child.data('context', childContext);
-          renderFullTree($child, childContext);
+          collapse($child);
+          registerNodeEventListeners($child);
         } else {
           renderFlatTree($list, childContext, nodeName, predicate);
         }
@@ -85,8 +96,6 @@ function viewTree(context, options) {
     } else {
       renderFullTree($el, context);
     }
-
-    registerTreeEventListeners();
   }
 
   function registerBaseEventListeners() {
@@ -112,8 +121,10 @@ function viewTree(context, options) {
     });
   }
 
-  function registerTreeEventListeners() {
-    $main.find('.node .icon').click(function() {
+  function registerNodeEventListeners(node) {
+    var $node = node && $(node) || $main.find('.node');
+
+    $node.find('.icon').click(function() {
       var $node = $(this).closest('.node'),
         expanded = $node.attr('data-expanded');
 
@@ -126,7 +137,7 @@ function viewTree(context, options) {
       }
     });
 
-    $main.find('.node .key').click(function() {
+    $node.find('.key').click(function() {
       $('.key.selected').removeClass('selected');
       window.ref = $(this).addClass('selected').closest('.node').data('context');
     });
@@ -134,7 +145,6 @@ function viewTree(context, options) {
 
   registerBaseEventListeners();
   renderFullTree($el, context);
-  registerTreeEventListeners();
 }
 
 
