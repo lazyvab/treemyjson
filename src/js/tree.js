@@ -2,18 +2,31 @@ function viewTree(context, options) {
   $('#mytree').remove();
   options = options || {};
 
-  var markup = Templates.Tree();
+  var markup = Tree.Templates.Main();
 
   var getNodes = typeof options.getNodes === 'function' ? options.getNodes : function(context) { return Object.keys(context); };
   var getValue = typeof options.getValue === 'function' ? options.getValue : function(context, node) { return context[node]; };
   var $el = options.el ? $(options.el) : $(markup).appendTo('body').hide().show(500).find('.tree-content');
   var $main = options.el ? $el : $('#mytree');
 
-  var clearTree = function() {
-    $el.empty();
-  };
+  function exit() {
+    $main.hide(300);
+    setTimeout(function() { $main.remove(); }, 300);
+  }
 
-  var renderFullTree = function($root, context) {
+  function clearTree() {
+    $el.empty();
+  }
+
+  function expand(node) {
+    $(node).attr('data-expanded', true);
+  }
+
+  function collapse(node) {
+    $(node).attr('data-expanded', false);
+  }
+
+  function renderFullTree($root, context) {
     // TODO: To optimize, create nodes of a subtree on expansion
     if (!context) {
       return;
@@ -35,9 +48,9 @@ function viewTree(context, options) {
         }
       }
     }
-  };
+  }
 
-  var renderFlatTree = function($list, context, prefix, predicate) {
+  function renderFlatTree($list, context, prefix, predicate) {
     if (!context) {
       return;
     }
@@ -59,9 +72,9 @@ function viewTree(context, options) {
         }
       }
     }
-  };
+  }
 
-  var filterTree = function(term) {
+  function filterTree(term) {
     clearTree();
 
     if (term) {
@@ -74,14 +87,9 @@ function viewTree(context, options) {
     }
 
     registerTreeEventListeners();
-  };
+  }
 
-  var exit = function() {
-    $main.hide(300);
-    setTimeout(function() { $main.remove(); }, 300);
-  };
-  
-  var registerBaseEventListeners = function() {
+  function registerBaseEventListeners() {
     $(document).on('keyup', function(evt) {
       if(evt.keyCode === 27) {
         exit();
@@ -91,11 +99,11 @@ function viewTree(context, options) {
     $main.find('.exit-treeview').on('click', exit);
 
     $main.find('.expand-all').on('click', function() {
-      $('.node[data-expanded]').attr('data-expanded', true);
+      expand('.node');
     });
 
     $main.find('.collapse-all').on('click', function() {
-      $('.node[data-expanded]').attr('data-expanded', false);
+      collapse('.node');
     });
 
     $main.find('.search').on('keyup', function(evt) {
@@ -110,15 +118,19 @@ function viewTree(context, options) {
       evt.stopImmediatePropagation();
       return false;
     });
-  };
+  }
 
-  var registerTreeEventListeners = function() {
+  function registerTreeEventListeners() {
     $main.find('.node .icon').click(function() {
       var $node = $(this).closest('.node'),
         expanded = $node.attr('data-expanded');
 
       if (typeof expanded !== 'undefined') {
-        $node.attr('data-expanded', !(expanded == 'true'));
+        if (expanded === 'true') {
+          collapse($node);
+        } else {
+          expand($node);
+        }
       }
     });
 
@@ -126,7 +138,7 @@ function viewTree(context, options) {
       $('.key.selected').removeClass('selected');
       window.ref = $(this).addClass('selected').closest('.node').data('context');
     });
-  };
+  }
 
   registerBaseEventListeners();
   renderFullTree($el, context);

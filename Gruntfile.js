@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 
     handlebars: {
       options: {
-        namespace: 'Templates',
+        namespace: 'Tree.Templates',
         processName: function (filepath) {
           return filepath.replace(/^.*\/([^\/]+)\.hbs$/, '$1');
         }
