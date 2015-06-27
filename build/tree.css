@@ -54,11 +54,7 @@
   -moz-box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.75);
 }
-#mytree .tree-toolbar {
-  margin: 0.5rem 0;
-  height: 3rem;
-}
-#mytree .tree-toolbar button {
+#mytree button {
   cursor: pointer;
   background: #35b128;
   /*the colour of the button*/
@@ -79,46 +75,45 @@
   font-family: monospace;
   height: 2.5rem;
   outline: none;
-  min-width: 3rem;
+  width: 3rem;
   padding: 0 !important;
 }
-#mytree .tree-toolbar button:hover {
+#mytree button:hover {
   opacity: 0.8;
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
 }
-#mytree .tree-toolbar .exit-treeview {
-  background-color: #ec0404;
+#mytree .exit-treeview {
+  background-color: #D20404;
   margin-bottom: 0.2rem;
-  font-size: 1.5rem;
-}
-#mytree .tree-toolbar .left-section {
-  float: left;
-}
-#mytree .tree-toolbar .right-section {
-  float: right;
+  font-size: 2rem;
+  position: absolute;
+  right: -1.5rem;
+  top: -0.5rem;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  line-height: 0.5rem;
 }
 #mytree .search-bar {
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   height: 3rem;
-  width: 23rem;
 }
 #mytree .search-bar .search {
   padding-left: 0.5rem;
   height: 2.5rem;
   border-radius: 8px;
   outline: none;
-  width: 100%;
+  width: 80%;
 }
 #mytree .tree-content {
   position: absolute;
   width: 100%;
-  top: 8rem;
-  bottom: 0;
+  top: 4rem;
+  bottom: 1rem;
   overflow-y: auto;
   overflow-x: auto;
-  border-top-style: groove;
 }
 #mytree .tree-content > ul {
   padding-left: 1rem;

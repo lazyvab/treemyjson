@@ -98,14 +98,6 @@ function viewTree(context, options) {
 
     $main.find('.exit-treeview').on('click', exit);
 
-    $main.find('.expand-all').on('click', function() {
-      expand('.node');
-    });
-
-    $main.find('.collapse-all').on('click', function() {
-      collapse('.node');
-    });
-
     $main.find('.search').on('keyup', function(evt) {
       var $input = $(this),
         term;
@@ -155,5 +147,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div id=\"mytree\">\r\n  <div class=\"tree-toolbar\">\r\n    <div class=\"left-section\">\r\n      <button class=\"expand-all\" title=\"Expand All\">[[+]]</button>\r\n      <button class=\"collapse-all\" title=\"Collapse All\">[[-]]</button>\r\n    </div>\r\n    <div class=\"right-section\">\r\n      <button class=\"exit-treeview\" title=\"Exit\">X</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"search-bar\">\r\n    <input type=\"text\" class=\"search\" placeholder=\"Looking for something specific? Search here...\"/>\r\n  </div>\r\n  <div class=\"tree-content\"></div>\r\n</div>";
+  return "<div id=\"mytree\">\r\n  <button class=\"exit-treeview\" title=\"Exit\">&times;</button>\r\n  <div class=\"search-bar\">\r\n    <input type=\"text\" class=\"search\" placeholder=\"Looking for something specific? Search here...\"/>\r\n  </div>\r\n  <div class=\"tree-content\"></div>\r\n</div>";
   });

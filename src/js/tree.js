@@ -98,14 +98,6 @@ function viewTree(context, options) {
 
     $main.find('.exit-treeview').on('click', exit);
 
-    $main.find('.expand-all').on('click', function() {
-      expand('.node');
-    });
-
-    $main.find('.collapse-all').on('click', function() {
-      collapse('.node');
-    });
-
     $main.find('.search').on('keyup', function(evt) {
       var $input = $(this),
         term;

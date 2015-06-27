@@ -69,66 +69,59 @@
   -moz-box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
 
-  .tree-toolbar {
-    margin: 0.5rem 0;
-    height: 3rem;
+  button {
+    cursor: pointer;
+    background:#35b128; /*the colour of the button*/
+    border:1px solid #33842a; /*required or the default border for the browser will appear*/
+    /*give the button curved corners, alter the size as required*/
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 10px;
+    /*give the button a drop shadow*/
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+    -moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+    box-shadow: 0 0 4px rgba(0,0,0, .75);
+    /*style the text*/
+    color: #f3f3f3;
+    font-size: 1.1em;
+    margin: 0 0.5rem;
+    font-family: monospace;
+    height: 2.5rem;
+    outline: none;
+    width: 3rem;
+    padding: 0 !important;
 
-    button {
-      cursor: pointer;
-      background:#35b128; /*the colour of the button*/
-      border:1px solid #33842a; /*required or the default border for the browser will appear*/
-      /*give the button curved corners, alter the size as required*/
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 10px;
-      /*give the button a drop shadow*/
-      -webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
-      -moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
-      box-shadow: 0 0 4px rgba(0,0,0, .75);
-      /*style the text*/
-      color: #f3f3f3;
-      font-size: 1.1em;
-      margin: 0 0.5rem;
-      font-family: monospace;
-      height: 2.5rem;
-      outline: none;
-      min-width: 3rem;
-      padding: 0 !important;
-
-      &:hover {
-        opacity: 0.8;
-        -webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
-        -moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
-        box-shadow: 0 0 1px rgba(0,0,0, .75);
-      }
-    }
-
-    .exit-treeview {
-      background-color: rgb(236, 4, 4);
-      margin-bottom: 0.2rem;
-      font-size: 1.5rem;
-    }
-
-    .left-section {
-      float: left;
-    }
-
-    .right-section {
-      float: right;
+    &:hover {
+      opacity: 0.8;
+      -webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
+      -moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
+      box-shadow: 0 0 1px rgba(0,0,0, .75);
     }
   }
 
+  .exit-treeview {
+    background-color: #D20404;
+    margin-bottom: 0.2rem;
+    font-size: 2rem;
+    position: absolute;
+    right: -1.5rem;
+    top: -0.5rem;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    line-height: 0.5rem;
+  }
+
   .search-bar {
-    padding: 0 0.5rem;
+    padding: 0.5rem;
     height: 3rem;
-    width: 23rem;
 
     .search {
       padding-left: 0.5rem;
       height: 2.5rem;
       border-radius: 8px;
       outline: none;
-      width: 100%;
+      width: 80%;
     }
   }
 
@@ -136,11 +129,10 @@
   .tree-content {
     position: absolute;
     width: 100%;
-    top: 8rem;
-    bottom: 0;
+    top: 4rem;
+    bottom: 1rem;
     overflow-y: auto;
     overflow-x: auto;
-    border-top-style: groove;
 
     > ul {
       padding-left: 1rem;
