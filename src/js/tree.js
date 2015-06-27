@@ -2,21 +2,7 @@ function viewTree(context, options) {
   $('#mytree').remove();
   options = options || {};
 
-  var markup = [
-    '<div id="mytree">',
-      '<div class="tree-toolbar row fixed">',
-        '<div class="cell left-section">',
-			'<button class="expand-all" title="Expand All">[[+]]</button>',
-			'<button class="collapse-all" title="Collapse All">[[-]]</button>',
-		'</div>',        
-		'<input type="text" class="search cell" placeholder="Looking for something specific? Search here..."/>',
-		'<div class="cell right right-section">',
-			'<button class="exit-treeview" title="Exit">X</button>',
-		'</div>',
-      '</div>',
-      '<div class="tree-content"></div>',
-    '</div>'
-  ].join('');
+  var markup = Templates.Tree();
 
   var getNodes = typeof options.getNodes === 'function' ? options.getNodes : function(context) { return Object.keys(context); };
   var getValue = typeof options.getValue === 'function' ? options.getValue : function(context, node) { return context[node]; };
@@ -91,7 +77,7 @@ function viewTree(context, options) {
   };
 
   var exit = function() {
-	$main.hide(300);
+    $main.hide(300);
     setTimeout(function() { $main.remove(); }, 300);
   };
   
@@ -102,8 +88,8 @@ function viewTree(context, options) {
       }
     });
 
-	$main.find('.exit-treeview').on('click', exit);
-	
+    $main.find('.exit-treeview').on('click', exit);
+
     $main.find('.expand-all').on('click', function() {
       $('.node[data-expanded]').attr('data-expanded', true);
     });

@@ -1,0 +1,9 @@
+[
+  "src/js/*.js",
+
+  "src/css/*.less",
+
+  "src/css/*.css",
+
+  "src/templates/*.hbs"
+]
