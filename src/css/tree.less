@@ -3,14 +3,6 @@
   padding: 0.5rem 0;
   cursor: pointer;
 
-  > .icon:before {
-    content: "[.]";
-    font-family: monospace;
-    vertical-align: top;
-    display: inline-block;
-    width: 1.5rem;
-  }
-
   &[data-expanded="false"] {
     > .icon:before {
       content: "[+]";
@@ -30,7 +22,15 @@
         display: block;
     }
   }
-  
+
+  > .icon:before {
+    content: "[.]";
+    font-family: monospace;
+    vertical-align: top;
+    display: inline-block;
+    width: 1.5rem;
+  }
+
   .key {
     display: inline-block;
     padding: 0 0.5rem;
@@ -51,6 +51,25 @@
     }
   }
 
+  .props {
+    &:before {
+      display: none;
+      content: "p";
+      width: 1.2rem;
+      border-radius: 50%;
+      background-color: green;
+      color: white;
+      text-align: center;
+      font-style: italic;
+    }
+  }
+
+  &:hover {
+    > .props:before {
+      display: inline-block;
+    }
+  }
+
   ul {
     padding-left: 2rem;
   }
@@ -58,7 +77,7 @@
 
 #mytree {
   border-radius: 0 15px 15px 0;
-  background-color: #C8D9EA;
+  background-color: #e0e8e0;
   position: fixed;
   left: 0;
   top: 1rem;
@@ -113,9 +132,10 @@
     min-width: 0;
   }
 
-  .search-bar {
+  .top-bar {
     padding: 0.5rem;
     height: 3rem;
+    border-bottom-style: ridge;
 
     .search {
       padding-left: 0.5rem;
@@ -126,17 +146,84 @@
     }
   }
 
+  .top-props {
+    display: none;
+
+    .exit-props {
+      font-weight: bold;
+      cursor: pointer;
+      color: blue;
+    }
+
+    .props-heading {
+      margin: 1rem 0;
+      font-style: italic;
+      font-size: 1rem;
+
+      .properties-parent {
+        font-weight: bold;
+      }
+
+      .minimal-checkbox {
+        float: right;
+        margin-right: 1rem;
+        line-height: normal;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
 
   .tree-content {
     position: absolute;
-    width: 100%;
+    width: 200%;
     top: 4rem;
     bottom: 1rem;
-    overflow-y: auto;
-    overflow-x: auto;
 
-    > ul {
-      padding-left: 1rem;
+    .tree-main,
+    .tree-properties {
+      display: inline-block;
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      overflow-y: auto;
+      overflow-x: auto;
+
+      > ul {
+        padding-left: 1rem;
+      }
+
+      &.minimal {
+        .extra {
+          display: none;
+        }
+      }
+    }
+
+    .tree-main {
+      left: 0;
+    }
+
+    .tree-properties {
+      right: 0;
+    }
+  }
+
+  &.properties-mode {
+    .tree-content {
+      left: -100%;
+    }
+    .top-main {
+      display: none;
+    }
+    .top-props {
+      display: block;
     }
   }
 }

@@ -1,7 +1,24 @@
 <div id="mytree">
   <button class="exit-treeview" title="Exit">&times;</button>
-  <div class="search-bar">
-    <input type="text" class="search" placeholder="Looking for something specific? Search here..."/>
+  <div class="content-wrapper">
+    <div class="top-bar">
+      <div class="top-main">
+        <input type="text" class="search" placeholder="Looking for something specific? Search here..."/>
+      </div>
+      <div class="top-props">
+        <div class="exit-props">&lt;&lt;&nbsp;Go back</div>
+        <div class="props-heading">
+          <span>Properties of <span class="properties-parent"></span> :</span>
+          <label class="minimal-checkbox">
+            <input type="checkbox" checked>
+            <span>Minimal</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="tree-content">
+      <div class="tree-main"></div>
+      <div class="tree-properties minimal"></div>
+    </div>
   </div>
-  <div class="tree-content"></div>
 </div>

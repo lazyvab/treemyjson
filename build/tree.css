@@ -3,13 +3,6 @@
   padding: 0.5rem 0;
   cursor: pointer;
 }
-.node > .icon:before {
-  content: "[.]";
-  font-family: monospace;
-  vertical-align: top;
-  display: inline-block;
-  width: 1.5rem;
-}
 .node[data-expanded="false"] > .icon:before {
   content: "[+]";
 }
@@ -21,6 +14,13 @@
 }
 .node[data-expanded="true"] > ul {
   display: block;
+}
+.node > .icon:before {
+  content: "[.]";
+  font-family: monospace;
+  vertical-align: top;
+  display: inline-block;
+  width: 1.5rem;
 }
 .node .key {
   display: inline-block;
@@ -38,12 +38,25 @@
 .node .value:before {
   content: " = ";
 }
+.node .props:before {
+  display: none;
+  content: "p";
+  width: 1.2rem;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  text-align: center;
+  font-style: italic;
+}
+.node:hover > .props:before {
+  display: inline-block;
+}
 .node ul {
   padding-left: 2rem;
 }
 #mytree {
   border-radius: 0 15px 15px 0;
-  background-color: #C8D9EA;
+  background-color: #e0e8e0;
   position: fixed;
   left: 0;
   top: 1rem;
@@ -97,27 +110,83 @@
   line-height: 0.5rem;
   min-width: 0;
 }
-#mytree .search-bar {
+#mytree .top-bar {
   padding: 0.5rem;
   height: 3rem;
+  border-bottom-style: ridge;
 }
-#mytree .search-bar .search {
+#mytree .top-bar .search {
   padding-left: 0.5rem;
   height: 2.5rem;
   border-radius: 8px;
   outline: none;
   width: 80%;
 }
+#mytree .top-props {
+  display: none;
+}
+#mytree .top-props .exit-props {
+  font-weight: bold;
+  cursor: pointer;
+  color: blue;
+}
+#mytree .top-props .props-heading {
+  margin: 1rem 0;
+  font-style: italic;
+  font-size: 1rem;
+}
+#mytree .top-props .props-heading .properties-parent {
+  font-weight: bold;
+}
+#mytree .top-props .props-heading .minimal-checkbox {
+  float: right;
+  margin-right: 1rem;
+  line-height: normal;
+  cursor: pointer;
+}
+#mytree .content-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 #mytree .tree-content {
   position: absolute;
-  width: 100%;
+  width: 200%;
   top: 4rem;
   bottom: 1rem;
+}
+#mytree .tree-content .tree-main,
+#mytree .tree-content .tree-properties {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 50%;
   overflow-y: auto;
   overflow-x: auto;
 }
-#mytree .tree-content > ul {
+#mytree .tree-content .tree-main > ul,
+#mytree .tree-content .tree-properties > ul {
   padding-left: 1rem;
+}
+#mytree .tree-content .tree-main.minimal .extra,
+#mytree .tree-content .tree-properties.minimal .extra {
+  display: none;
+}
+#mytree .tree-content .tree-main {
+  left: 0;
+}
+#mytree .tree-content .tree-properties {
+  right: 0;
+}
+#mytree.properties-mode .tree-content {
+  left: -100%;
+}
+#mytree.properties-mode .top-main {
+  display: none;
+}
+#mytree.properties-mode .top-props {
+  display: block;
 }
 /*
   Apply .cell to children of .row and they will behave like table cells
