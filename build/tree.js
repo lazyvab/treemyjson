@@ -77,8 +77,8 @@ function viewTree(context, options) {
               }
             }
           }
-          registerNodeEventListeners($child);
         }
+        registerNodeEventListeners($child);
       }
     }
   }
@@ -116,8 +116,9 @@ function viewTree(context, options) {
               collapse($child);
             }
           }
-          registerNodeEventListeners($child);
         }
+
+        registerNodeEventListeners($child);
 
         if (!childContext || key.indexOf('_') === 0) {
           $child.addClass('extra');
